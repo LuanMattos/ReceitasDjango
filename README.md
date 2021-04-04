@@ -39,9 +39,10 @@ No admin é onde você cadastra suas receitas/pessoas e etc..
 <br>
 <br>
 
-![alt text](https://github.com/LuanMattos/ReceitasDjango/blob/master/media/doc/2.png "Screenshot 1")
-
+![alt text](https://github.com/LuanMattos/ReceitasDjango/media/doc/2.png "Screenshot 2")
 
 <br>
+<br>
+
 ![alt text](https://github.com/LuanMattos/CrudAngular/blob/master/scree/1.png "Screenshot 1")
 
