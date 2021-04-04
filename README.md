@@ -9,7 +9,7 @@ Site de receitas com Django
 $ git clone git@github.com:LuanMattos/CrudAngular.git
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd RECEITAS_DJANGO
+$ cd RECEITASDJANGO
 
 # Instale o virtual env
 $ python -m venv
