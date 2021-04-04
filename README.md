@@ -34,7 +34,7 @@ No admin é onde você cadastra suas receitas/pessoas e etc..
 
 # :art: Layout
 
-![alt text](https://github.com/LuanMattos/ReceitasDjango/media/doc/1.png "Screenshot 1")
+![alt text](https://github.com/LuanMattos/ReceitasDjango/blob/master/media/doc/1.png "Screenshot 1")
 
 <br>
 <br>
