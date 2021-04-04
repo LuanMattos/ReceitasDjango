@@ -1,5 +1,5 @@
-# :page_facing_up: Dragões - Angular
-Crud Dragões Sicredi
+# :page_facing_up: Receitas - Django
+Site de receitas com Django
 <br>
 <br>
 ### Executar a aplicação
