@@ -30,7 +30,7 @@ $ python manage.py runserver
 # Usuário e Senha do admin = admin (http://localhost:800/admin)
 
 No admin é onde você cadastra suas receitas/pessoas e etc..
-
+```
 
 # :art: Layout
 
