@@ -34,11 +34,11 @@ No admin é onde você cadastra suas receitas/pessoas e etc..
 
 # :art: Layout
 
-![alt text](https://github.com/LuanMattos/ReceitasDjango/blob/master/media/doc/1.png "Screenshot 1")
+![alt text](https://github.com/LuanMattos/ReceitasDjango/blob/main/media/doc/1.png "Screenshot 1")
 
 <br>
 <br>
 
-![alt text](https://github.com/LuanMattos/ReceitasDjango/blob/master/media/doc/2.png "Screenshot 2")
+![alt text](https://github.com/LuanMattos/ReceitasDjango/blob/main/media/doc/2.png "Screenshot 2")
 
 
