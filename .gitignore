@@ -9,6 +9,9 @@ __pycache__
 __pycache__/**
 */__pycache__
 __pycache__/*
+venv/Lib/site-packages/django/contrib/admin/__pycache__/*
+venv/Lib/site-packages/django/contrib/admin/__pycache__/**
+venv/Lib/site-packages/django/contrib/admin/__pycache__/***
 db.sqlite3
 media
 
