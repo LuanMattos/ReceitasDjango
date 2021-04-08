@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib import auth
+from django.contrib import auth, messages
 from receitas.models import Receita
 
 def login(request):
@@ -27,17 +27,29 @@ def cadastro(request):
         senha2 = request.POST['password2']
 
         if User.objects.filter(email=email).exists():
-            print('Usuário já cadastrado')
+            messages.error(request, 'Usuário já cadastrado')
             return redirect('cadastro')
         
-        user = User.objects.create_user(username=nome, email=email, password=senha)
-        user.save()
-
-        print('salvou')
-
-        if not validate_form(request):
-            return redirect('cadastro')
+    
+        if not request.POST['nome'].strip() or not len(request.POST['nome']):
+                messages.error(request, 'Nome é obrigatório')
+                return redirect('cadastro')
+        elif not request.POST['email'].strip():
+                messages.error(request, 'Email é obrigatório')
+                return redirect('cadastro')
+        elif not request.POST['password'].strip():
+                messages.error(request, 'Senhas é obrigatória')
+                return redirect('cadastro')
+        elif not request.POST['password2'].strip():
+                messages.error(request, 'Senhas é obrigatória')
+                return redirect('cadastro')        
+        elif request.POST['password'] != request.POST['password2']:
+                messages.error(request, 'Senhas não conferem')
+                return redirect('cadastro')
         else:
+            user = User.objects.create_user(username=nome, email=email, password=senha)
+            user.save()
+            messages.success(request, 'Cadastro realizado com sucesso!')
             return redirect('login')
     else:
         return render(request,'usuarios/cadastro.html')
@@ -56,21 +68,6 @@ def dashboard(request):
 def logout(request):
     auth.logout(request)
     return redirect('index')
-
-def validate_form(req):
-
-    if not req.POST['nome'].strip() or not len(req.POST['nome']):
-        return False
-    if not req.POST['email'].strip():
-        return False
-    if not req.POST['password'].strip():
-        return False        
-    if not req.POST['password2'].strip():
-        return False        
-    if req.POST['password'] != req.POST['password2']:
-        return False
-
-    return True
 
 def cria_receita(request):
     return render(request,'usuarios/cria_receita.html')
