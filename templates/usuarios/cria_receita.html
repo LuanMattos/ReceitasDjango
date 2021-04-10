@@ -27,39 +27,44 @@
            <p>Todos os campos são obrigatórios</p>
                <div class="contact-form-area">
                    <form action="{% url 'salvar_receita' %}" method="post" enctype="multipart/form-data">
-                           {% csrf_token %}
+                        {% csrf_token %}
+                        <input type='text' id='receita_id' name='receita_id' value='{{receita.id}}' hidden>
                        <div class="row">
                            <div class="col-12 col-lg-12">
                                <label for="nome_receita"><b>Título da receita</b></label>
-                               <input type="text" id="nome_receita" class="form-control" name="nome_receita" placeholder="Ex. Suco de limão" required>
+                               <input type="text" id="nome_receita" class="form-control" name="nome_receita" placeholder="Ex. Suco de limão" value="{{receita.nome_receita}}" required>
                            </div>
                            <div class="col-12">
                                <label for="file"><b>Ingredientes</b></label>
-                               <textarea class="form-control" name="ingredientes" cols="30" rows="10" placeholder="Ex. 2 Limões &#10;200ml de água" required></textarea>
+                               <textarea class="form-control" name="ingredientes" cols="30" rows="10" placeholder="Ex. 2 Limões &#10;200ml de água" required>{{receita.ingredientes}}</textarea>
                            </div>
                            <div class="col-12">
                                <label for="file"><b>Modo de preparo</b></label>
-                               <textarea class="form-control" name="modo_preparo" cols="30" rows="10" placeholder="Ex. Corte o limão com cuidado e exprema no copo  &#10;Misture com a água e sirva." required></textarea>
+                               <textarea class="form-control" name="modo_preparo" cols="30" rows="10" placeholder="Ex. Corte o limão com cuidado e exprema no copo  &#10;Misture com a água e sirva." required>{{receita.modo_preparo}}</textarea>
                            </div>
                            <div class="col-12 col-lg-3">
                                <label for="file"><b>Tempo de preparo (minutos)</b></label>
-                               <input type="number" class="form-control" name="tempo_preparo" placeholder="Ex. 2" required>
+                               <input type="number" class="form-control" name="tempo_preparo" placeholder="Ex. 2" value="{{receita.tempo_preparo}}" required>
                            </div>
                            <div class="col-12 col-lg-3">
                                <label for="file"><b>Rendimento</b></label>
-                               <input type="text" class="form-control" name="rendimento" placeholder="Ex. serve 1 pessoa" required>
+                               <input type="text" class="form-control" name="rendimento" placeholder="Ex. serve 1 pessoa" value="{{receita.rendimento}}" required>
                            </div>
                            <div class="col-12 col-lg-3">
                                <label for="file"><b>Categoria da receita</b></label>
-                               <input type="text" class="form-control" name="categoria" placeholder="Ex. Sucos e bebidas" required>
+                               <input type="text" class="form-control" name="categoria" placeholder="Ex. Sucos e bebidas" value="{{receita.categoria}}" required>
                            </div>
                            <div class="col-12 col-lg-3">
                                <label for="file"><b>Foto</b></label>
-                               <input type="file" class="form-control" name="foto_receita" required>
+                               <input type="file" class="form-control" name="foto_receita" value="{{receita.foto_receita}}" required>
                            </div>
                            <div class="col-12 text-center">
-                               <button class="btn delicious-btn mt-30" type="submit">Criar sua receita</button>
-                           </div>
+                            {% if receita.id %}
+                               <button class="btn delicious-btn mt-30" type="submit">Atualizar receita</button>
+                            {% else %}
+                               <button class="btn delicious-btn mt-30" type="submit">Criar receita</button>
+                            {% endif %}
+                           </div>                                
                        </div>
                    </form>
                </div>

@@ -45,19 +45,35 @@ def salvar_receita(request):
         rendimento = request.POST['rendimento']
         categoria = request.POST['categoria']
         foto_receita = request.FILES['foto_receita']
+        receita_id = request.POST['receita_id']
         user = get_object_or_404(User, pk=request.user.id)
-        receita = Receita.objects.create(
-            pessoa=user,
-            nome_receita=nome_receita,
-            ingredientes=ingredientes,
-            modo_preparo=modo_preparo,
-            tempo_preparo=tempo_preparo,
-            rendimento=rendimento,
-            categoria=categoria,
-            foto_receita=foto_receita
-            )
-        receita.save()
-        return redirect('dashboard')
+
+        if receita_id:
+            r = Receita.objects.get(pk=receita_id)
+            r.nome_receita = nome_receita
+            r.ingredientes = ingredientes
+            r.modo_preparo = modo_preparo
+            r.tempo_preparo = tempo_preparo
+            r.rendimento = rendimento
+            r.categoria = categoria
+            r.foto_receita = foto_receita
+                            
+            r.save()
+            return redirect('dashboard')
+
+        else:
+            receita = Receita.objects.create(
+                pessoa=user,
+                nome_receita=nome_receita,
+                ingredientes=ingredientes,
+                modo_preparo=modo_preparo,
+                tempo_preparo=tempo_preparo,
+                rendimento=rendimento,
+                categoria=categoria,
+                foto_receita=foto_receita
+                )
+            receita.save()
+            return redirect('dashboard')
     else:
         return render(request, 'usuarios/cria_receita.html')
 
