@@ -21,11 +21,13 @@
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="single-best-receipe-area mb-30 card border-0">
                     <div class='img-container'>
-                    {% if receita.foto_receita == '' %}
-                    <img src="{% static 'img/bg-img/foto_receita.png' %}" alt="" style='height: 200px; object-fit: cover;'>
-                    {% else %}
-                    <img src="{{ receita.foto_receita.url }}" alt="" width="400" style='height: 200px; object-fit: cover;'>
-                    {% endif %}
+                        {% if receita.foto_receita == '' %}
+                        <img src="{% static 'img/bg-img/foto_receita.png' %}" alt=""
+                            style='height: 200px; object-fit: cover;'>
+                        {% else %}
+                        <img src="{{ receita.foto_receita.url }}" alt="" width="400"
+                            style='height: 200px; object-fit: cover;'>
+                        {% endif %}
                     </div>
                     <div class="receipe-content">
                         <a href="{% url 'receita'  receita.id %}">
@@ -36,11 +38,50 @@
             </div>
             {% endfor %}
             {% else %}
-                <span class='text-muted m-auto'>Nenhuma receita</span>
+            <span class='text-muted m-auto'>Nenhuma receita</span>
             {% endif %}
         </div>
     </div>
 </section>
 <!-- ##### Best Receipe Area End ##### -->
+<!-- ##### Pagination ##### -->
+<section class="top-catagory-area section-padding-20-0">
+    <div class="container">
+        {% if receitas.has_other_pages %}
+        <ul class="pagination">
+            {% if receitas.has_previous %}
+                <li class="page-item">
+                    <a href="?pages={{ receitas.previous_page_number }}" class="page-link">&laquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">&laquo;</a>
+                </li>
+            {% endif %}
+            {% for pagina in receitas.paginator.page_range %}
+                {% if receitas.number == pagina %}
+                    <li class="page-item active">
+                        <a class="page-link">{{pagina}}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a href="?page={{ pagina }}" class="page-link">{{pagina}}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if receitas.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ receitas.next_page_number }}" class="page-link">&raquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">&raquo;</a>
+                </li>
+            {% endif %}
+        </ul>
+        {% endif %}
+    </div>
+</section>
+<!-- ##### Pagination End ##### -->
 {% include 'partials/_footer.html' %}
 {% endblock %}
