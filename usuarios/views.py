@@ -69,17 +69,3 @@ def logout(request):
     auth.logout(request)
     return redirect('index')
 
-def cria_receita(request):
-    return render(request,'usuarios/cria_receita.html')
-
-def deletar_receita(request, receita_id):
-    receita = get_object_or_404(Receita, pk=receita_id)
-    receita.delete()
-    return redirect('dashboard')
-
-def editar_receita(request, receita_id):
-    receita = get_object_or_404(Receita, pk=receita_id)
-    receita_a_editar = {
-        'receita': receita
-    }
-    return render(request,'usuarios/cria_receita.html', receita_a_editar)

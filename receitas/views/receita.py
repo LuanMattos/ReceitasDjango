@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404, redirect
-from .models import Receita
 from receitas.models import Receita
 from django.contrib.auth.models import User
 
@@ -10,7 +9,6 @@ def index(request):
     }
     return render(request, 'index.html', dados)
 
-
 def receita(request, receita_id):
     receita = get_object_or_404(Receita, pk=receita_id)
 
@@ -18,23 +16,7 @@ def receita(request, receita_id):
         'receita':receita
     }
     
-    return render(request, 'receita.html', receita_a_exibir)
-
-
-def buscar(request):
-    lista_receitas = Receita.objects.order_by('-date_receita').filter(publicada=True)
-
-    if 'buscar' in request.GET:
-        nome_a_buscar = request.GET['buscar']
-        if buscar:
-            lista_receitas = lista_receitas.filter(nome_receita__icontains=nome_a_buscar)
-
-    dados = {
-        'receitas': lista_receitas
-    }
-
-    return render(request, 'buscar.html', dados)
-
+    return render(request, 'receita/receita.html', receita_a_exibir)
 
 def salvar_receita(request):
     if request.method == 'POST':
@@ -75,7 +57,22 @@ def salvar_receita(request):
             receita.save()
             return redirect('dashboard')
     else:
-        return render(request, 'usuarios/cria_receita.html')
+        return render(request, 'receita/cria_receita.html')
+
+def cria_receita(request):
+    return render(request,'receita/cria_receita.html')
+
+def deletar_receita(request, receita_id):
+    receita = get_object_or_404(Receita, pk=receita_id)
+    receita.delete()
+    return redirect('dashboard')
+
+def editar_receita(request, receita_id):
+    receita = get_object_or_404(Receita, pk=receita_id)
+    receita_a_editar = {
+        'receita': receita
+    }
+    return render(request,'receita/cria_receita.html', receita_a_editar)
 
 
 
