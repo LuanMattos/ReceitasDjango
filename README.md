@@ -6,7 +6,7 @@ Site de receitas com Django
 
 ```bash
 # Clone este repositório 
-$ git clone git@github.com:LuanMattos/CrudAngular.git
+$ git clone git@github.com:LuanMattos/ReceitasDjango.git
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd RECEITASDJANGO
